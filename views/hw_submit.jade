@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  header
+    h1= title
+  main
+    h3 HW # #{HOMEWORK.NUMBER}
+    form(action='/HW_Submit/' + HOMEWORK.NUMBER, method='post', enctype="multipart/form-data")
+      ul
+        each HOMEWORK_PROBLEM in HOMEWORK_PROBLEMS
+          li= HOMEWORK_PROBLEM.PROBLEM
+            br
+            br
+            input(type='file', name=HOMEWORK_PROBLEM.CID)
+            br
+            br
+      button(type='submit') Submit
+        

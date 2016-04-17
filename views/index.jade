@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  header
+    h1= title
+  if (user)
+    main
+      h3 Hi, #{user.USER_ID}
+      ul
+        each HW in HWS
+          - var link = '/HW_Submit/' + HW.NUMBER
+          li
+            a(href=link)= 'Homework' + HW.NUMBER
+            br
+            p(class=HW.DUE_DATE > current ? "ongoing" : "fired") Due date: #{HW.DUE_DATE}
+      br
+      form(action='/changePassword', method='post')
+        button(type='submit') Change Password
+      br
+      form(action='/logout', method='post')
+        button(type='submit') Logout
+  else
+    main
+      h3 Not yet login.
+      ul
+        each HW in HWS
+          li= 'Homework' + HW.NUMBER
+            br
+            p(class=HW.DUE_DATE > current ? "ongoing" : "fired") Due date: #{HW.DUE_DATE}
+      form(action='/login', method='post')
+        input(type='text', name='username', placeholder='Enter Username')
+        br
+        input(type='password', name='password', placeholder='password')
+        br
+        br
+        button(type='submit') Login

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pm2 stop homework
+pm2 start bin/www -n homework -l log/general.log -o log/output.log -e log/error.log
+
